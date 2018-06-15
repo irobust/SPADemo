@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  log(){
+    let x = 10;
+    debugger;
+  }
 }
