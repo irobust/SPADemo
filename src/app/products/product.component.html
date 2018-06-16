@@ -1,0 +1,40 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Level</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of filteredProducts, let i = index">
+      <td>{{ i+1 }}</td>
+      <td>{{ product.productId | code:'5' }}</td>
+      <td>{{ product.productName | lowercase | uppercase }}</td>
+      <td>
+          <span class="price"
+            [ngClass]="{'low-price': product.price<20}">
+            {{ product.price | number:'2.2-2' }}
+          </span>
+      </td>
+      <td>
+          <span *ngIf="product.price<20; else high">
+            LOW
+          </span>
+          <ng-template #high>
+          <span>HIGH</span>
+          </ng-template>
+      </td>
+      <td>
+        <button class="btn btn-success" (click)="editProduct(product)">Edit</button>
+        <button class="btn btn-danger"   
+                (click)="removeProduct(product)">
+                Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,51 @@
+<div class="container pt-3">
+    <h3>New Product</h3>
+    <form #frm="ngForm" (submit)="doAddProduct()">
+        <div class="form-group" >
+            <label class="control-label">Product Name</label>
+            
+            <input type="text" class="form-control" 
+                    name="firstName" #txtName="ngModel"
+                    ngModel required pattern="[A-z-]{3,}" 
+                    [(ngModel)]="newProduct.productName">
+              <div *ngIf="txtName.invalid && txtName.dirty"
+                    class="alert alert-danger">
+                Product Name is required, and must be at least 3 characters.
+            </div>
+        </div>
+        <div class="form-group" >
+            <label class="control-label">Product Code</label>
+            <input type="text" class="form-control" 
+                    name="productCode" [(ngModel)]="newProduct.productCode">
+        </div>
+        <div class="form-group" >
+            <label class="control-label">Price</label>
+            <input type="text" class="form-control" 
+                    name="productCode" [(ngModel)]="newProduct.price">
+        </div>
+        <div class="form-group">
+            <label class="control-label">Primary Language</label>
+            <select required class="form-control" #rating=ngModel 
+                    [(ngModel)]="newProduct.rating" 
+                    name="rating">
+                <option [ngValue]="null">
+                  Select rating score...
+                </option>
+                <option *ngFor="let r of ratingScores" [value]="r">
+                  {{ r }}
+                </option>
+            </select>
+            <div *ngIf="rating.invalid && rating.touched"
+                  class="alert alert-danger">
+              Rating must be selected
+          </div>
+        </div>
+        <button class="btn btn-primary"
+                type="submit" [disabled]="frm.invalid">
+          Ok
+        </button>
+    </form>
+    <div *ngIf="isAdded" class="alert alert-success">
+        <strong>Success!</strong> Product ID {{ lastestProduct.id }} is Added.
+      </div>
+</div>
