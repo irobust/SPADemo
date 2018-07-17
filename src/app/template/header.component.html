@@ -8,13 +8,13 @@
             <li class="nav-item">
               <a class="nav-link" href="#" (click)="selectMenu(1)">Welcome</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link"  href="#" 
-                 [routerLink]="['/products']">Products</a>
+                 [routerLink]="['/products']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Products</a>
             </li>
             <li class="nav-item">
               <a class="nav-link"  href="#" 
-                 (click)="goToNewProductPage($event)">New Product</a>
+              [routerLink]="['/products/new']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">New Product</a>
             </li>
         </ul>
     </div>
